@@ -1,0 +1,7 @@
+C:\Users\Mihail\OneDrive\C++\OpenGLES\OpenGLESApp1\OpenGLESApp1.Android.Packaging\x86\Debug\OpenGLESApp1.apk.recipe
+C:\Users\Mihail\OneDrive\C++\OpenGLES\OpenGLESApp1\OpenGLESApp1.Android.Packaging\x86\Debug\OpenGLESApp1.apk.recipe.merged
+C:\Users\Mihail\OneDrive\C++\OpenGLES\OpenGLESApp1\OpenGLESApp1.Android.Packaging\x86\Debug\Package\libs\x86\libOpenGLESApp1.so
+C:\Users\Mihail\OneDrive\C++\OpenGLES\OpenGLESApp1\OpenGLESApp1.Android.Packaging\x86\Debug\FileStringReplace.incremental
+C:\Users\Mihail\OneDrive\C++\OpenGLES\OpenGLESApp1\OpenGLESApp1.Android.Packaging\x86\Debug\OpenGLESApp1.apk
+C:\Users\Mihail\OneDrive\C++\OpenGLES\OpenGLESApp1\OpenGLESApp1.Android.Packaging\x86\Debug\OpenGLESApp1.lastsuccessfuldeploy
+C:\Users\Mihail\OneDrive\C++\OpenGLES\OpenGLESApp1\OpenGLESApp1.Android.Packaging\x86\Debug\Package\AndroidManifest.xml

@@ -1,0 +1,1 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Application Type\iOS\1.0\iOS.Common.targets(197,5): error MSB4044: для задачи "GetRemoteClCompileItems" не было указано значение для обязательного параметра "RemoteRootDirectory".

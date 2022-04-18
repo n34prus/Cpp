@@ -1,0 +1,12 @@
+C:\Users\Mihail\OneDrive\C++\OpenGLES\OpenGLESApp1\OpenGLESApp1.Android.Packaging\ARM64\Debug\OpenGLESApp1.apk.recipe
+C:\Users\Mihail\OneDrive\C++\OpenGLES\OpenGLESApp1\OpenGLESApp1.Android.Packaging\ARM64\Debug\OpenGLESApp1.apk.recipe.merged
+C:\Users\Mihail\OneDrive\C++\OpenGLES\OpenGLESApp1\OpenGLESApp1.Android.Packaging\ARM64\Debug\Package\libs\arm64-v8a\libOpenGLESApp1.so
+C:\Users\Mihail\OneDrive\C++\OpenGLES\OpenGLESApp1\OpenGLESApp1.Android.Packaging\ARM64\Debug\FileStringReplace.incremental
+C:\Users\Mihail\OneDrive\C++\OpenGLES\OpenGLESApp1\OpenGLESApp1.Android.Packaging\ARM64\Debug\OpenGLESApp1.apk
+C:\Users\Mihail\OneDrive\C++\OpenGLES\OpenGLESApp1\OpenGLESApp1.Android.Packaging\ARM64\Debug\OpenGLESApp1.lastsuccessfuldeploy
+C:\Users\Mihail\OneDrive\C++\OpenGLES\OpenGLESApp1\OpenGLESApp1.Android.Packaging\ARM64\Debug\Package\libs\arm64-v8a\gdbserver
+C:\Users\Mihail\OneDrive\C++\OpenGLES\OpenGLESApp1\OpenGLESApp1.Android.Packaging\ARM64\Debug\Package\libs\arm64-v8a\libc++_static.a
+C:\Users\Mihail\OneDrive\C++\OpenGLES\OpenGLESApp1\OpenGLESApp1.Android.Packaging\ARM64\Debug\Package\libs\arm64-v8a\libc++abi.a
+C:\Users\Mihail\OneDrive\C++\OpenGLES\OpenGLESApp1\OpenGLESApp1.Android.Packaging\ARM64\Debug\Package\res\values\strings.xml
+C:\Users\Mihail\OneDrive\C++\OpenGLES\OpenGLESApp1\OpenGLESApp1.Android.Packaging\ARM64\Debug\Package\project.properties
+C:\Users\Mihail\OneDrive\C++\OpenGLES\OpenGLESApp1\OpenGLESApp1.Android.Packaging\ARM64\Debug\Package\build.xml

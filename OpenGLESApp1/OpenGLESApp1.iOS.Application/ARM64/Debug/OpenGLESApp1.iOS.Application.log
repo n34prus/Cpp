@@ -1,0 +1,1 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\MDD\iOS\V150\Common.targets(270,5): error MSB4044: для задачи "VCRemoteBuild" не было указано значение для обязательного параметра "RemoteRootDirectory".

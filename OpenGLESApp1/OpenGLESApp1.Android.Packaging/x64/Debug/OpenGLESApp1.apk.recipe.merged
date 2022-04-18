@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project>
+  <SOLibPaths>C:\Users\Mihail\OneDrive\C++\OpenGLES\OpenGLESApp1\x64\Debug\libOpenGLESApp1.so;C:\Microsoft\AndroidNDK\android-ndk-r21e\prebuilt\android-x86_64\gdbserver\gdbserver;C:\Microsoft\AndroidNDK\android-ndk-r21e\sources\cxx-stl\llvm-libc++\libs\x86_64\libc++_static.a;C:\Microsoft\AndroidNDK\android-ndk-r21e\sources\cxx-stl\llvm-libc++\libs\x86_64\libc++abi.a</SOLibPaths>
+  <AndroidLibPaths></AndroidLibPaths>
+  <OObjPaths>C:\Users\Mihail\OneDrive\C++\OpenGLES\OpenGLESApp1\OpenGLESApp1.Android.NativeActivity\x64\Debug</OObjPaths>
+  <Configuration>Debug</Configuration>
+  <Platform>x64</Platform>
+  <AndroidArchitecture>x86_64</AndroidArchitecture>
+</project>

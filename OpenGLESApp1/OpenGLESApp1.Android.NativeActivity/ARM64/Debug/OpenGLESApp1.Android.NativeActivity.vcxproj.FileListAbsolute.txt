@@ -1,0 +1,1 @@
+C:\Users\Mihail\OneDrive\C++\OpenGLES\OpenGLESApp1\OpenGLESApp1.Android.NativeActivity\ARM64\Debug\libOpenGLESApp1.so

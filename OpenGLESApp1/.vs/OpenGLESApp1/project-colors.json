@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "a0a17c9c-91a4-41a6-a77b-55fd1e3c196c": {
+      "ProjectGuid": "a0a17c9c-91a4-41a6-a77b-55fd1e3c196c",
+      "DisplayName": "OpenGLESApp1.Android.NativeActivity",
+      "ColorIndex": 0
+    },
+    "080f012b-4b99-475e-8a32-e39922539ac7": {
+      "ProjectGuid": "080f012b-4b99-475e-8a32-e39922539ac7",
+      "DisplayName": "OpenGLESApp1.Shared",
+      "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Прочие файлы",
+      "ColorIndex": -1
+    },
+    "cb540262-7d94-4756-a86d-8d3bfff39410": {
+      "ProjectGuid": "cb540262-7d94-4756-a86d-8d3bfff39410",
+      "DisplayName": "OpenGLESApp1.Android.Packaging",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}
