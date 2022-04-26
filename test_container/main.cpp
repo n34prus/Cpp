@@ -2,18 +2,41 @@
 #include "container.h" 
 
 using namespace std;
+List<int> list;
+
+void print() {
+    for (int i = 0; i < list.get_size(); i++) cout << list[i] << " ";
+    cout << endl;
+};
 
 int main()
 {
-    List<int> list;
+    list.push_front(2);
+    print();
+
+    list.push_front(1);
+    print();
+
+    list.push_back(3);
+    print();
+
+    list.push_back(4);
+    print();
+
     list.push_back(5);
-    list.push_back(40);
-    list.push_back(300);
+    print();
 
-    cout << list.get_size() << endl;
-    cout << list[1] << endl;
+    //list.pop_back();
+    //print();
 
-    list.pop_front();
+    list.insert(556, 1);
+    print();
 
-    cout << list[1] << endl;
+    list.remove(4);
+    print();
+
+    //List<int>::Iterator it;
+    //it = list.begin();
+
+    //list.pop_front();
 }

@@ -1,3 +1,1 @@
-﻿  main.cpp
-C:\Users\Mihail\OneDrive\C++\test_container\test_container\container.h(62): warning C4715: List<int>::operator[]: значение возвращается не при всех путях выполнения
-  test_container.vcxproj -> C:\Users\Mihail\OneDrive\C++\test_container\test_container\x64\Debug\test_container.exe
+﻿  test_container.vcxproj -> C:\Users\Mihail\OneDrive\C++\test_container\x64\Debug\test_container.exe
