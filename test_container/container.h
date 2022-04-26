@@ -1,34 +1,34 @@
-#pragma once
+п»ї#pragma once
 template <class T>
 class List {
 private:
-	//	элементы контейнера
+	//	СЌР»РµРјРµРЅС‚С‹ РєРѕРЅС‚РµР№РЅРµСЂР°
 	class Node {
 	public:
-		Node* pNext;	//	указатель на следующий элемент
-		Node* pPrev;	//	указатель на предыдущий элемент
-		T data;			//	юзер дата
+		Node* pNext;	//	СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚
+		Node* pPrev;	//	СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РїСЂРµРґС‹РґСѓС‰РёР№ СЌР»РµРјРµРЅС‚
+		T data;			//	СЋР·РµСЂ РґР°С‚Р°
 		Node(T data=T(), Node* pNext = nullptr, Node* pPrev = nullptr) {
 			this->data = data;
 			this->pNext = pNext;
 			this->pPrev = pPrev;
 		}
 	};
-	int size;		//	размер контейнера
-	Node* head;		//	указатель на нулевой элемент
-	Node* tail;		//	указатель на последний элемент
+	int size;		//	СЂР°Р·РјРµСЂ РєРѕРЅС‚РµР№РЅРµСЂР°
+	Node* head;		//	СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РЅСѓР»РµРІРѕР№ СЌР»РµРјРµРЅС‚
+	Node* tail;		//	СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РїРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚
 
-	// достаем указатель на элемент по индексу
+	// РґРѕСЃС‚Р°РµРј СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЌР»РµРјРµРЅС‚ РїРѕ РёРЅРґРµРєСЃСѓ
 	Node* search(int index) {
 		Node* ptr = nullptr;
-		//	проход с головы
+		//	РїСЂРѕС…РѕРґ СЃ РіРѕР»РѕРІС‹
 		if (index < (int)(size / 2)) {
 			ptr = this->head;
 			for (int i = 0; i < index; i++) {
 				ptr = ptr->pNext;
 			}
 		}
-		//	проход с хвоста
+		//	РїСЂРѕС…РѕРґ СЃ С…РІРѕСЃС‚Р°
 		else {
 			ptr = this->tail;
 			for (int i = size - 1; i > index; i--) {
@@ -86,10 +86,10 @@ public:
 	Iterator last() { return Iterator(tail); }
 	Iterator end() { return Iterator(tail->pNext); }
 
-	//	возвращает размер контейнера
+	//	РІРѕР·РІСЂР°С‰Р°РµС‚ СЂР°Р·РјРµСЂ РєРѕРЅС‚РµР№РЅРµСЂР°
 	int get_size() { return size; };
 	
-	//	добавление элемента в конец
+	//	РґРѕР±Р°РІР»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РІ РєРѕРЅРµС†
 	void push_back(T data) {
 		if (size) {
 			Node* temp = tail;
@@ -103,7 +103,7 @@ public:
 		size++;
 	}
 	
-	//	добавление элемента в начало
+	//	РґРѕР±Р°РІР»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РІ РЅР°С‡Р°Р»Рѕ
 	void push_front(T data) {
 		if (size) {
 			Node* temp = head;
@@ -117,7 +117,7 @@ public:
 		size++;
 	}
 
-	//	удаление первого элемента
+	//	СѓРґР°Р»РµРЅРёРµ РїРµСЂРІРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 	void pop_front() {
 		Node *temp = head;
 		head = head->pNext;
@@ -125,7 +125,7 @@ public:
 		size--;
 	}
 
-	//	удаление последнего элемента
+	//	СѓРґР°Р»РµРЅРёРµ РїРѕСЃР»РµРґРЅРµРіРѕ СЌР»РµРјРµРЅС‚Р°
 	void pop_back() {
 		Node* temp = tail;
 		tail = tail->pPrev;
@@ -133,7 +133,7 @@ public:
 		size--;
 	}
 
-	//	добавление элемента по индексу
+	//	РґРѕР±Р°РІР»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РїРѕ РёРЅРґРµРєСЃСѓ
 	void insert(T data, int index) {
 		if (!index) push_front(data);
 		else if (index == size) push_back(data);
@@ -147,7 +147,7 @@ public:
 		}
 	}
 
-	//	удаление элемента по индексу
+	//	СѓРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РїРѕ РёРЅРґРµРєСЃСѓ
 	void remove(int index) {
 		if (!index) pop_front();
 		else if (index == size - 1) pop_back();
@@ -162,12 +162,12 @@ public:
 		}
 	}
 
-	//	очистка контейнера
+	//	РѕС‡РёСЃС‚РєР° РєРѕРЅС‚РµР№РЅРµСЂР°
 	void clear() {
 		while (size) pop_front();
 	}
 
-	//	перегрузка [] для обращения по абсолютному индексу
+	//	РїРµСЂРµРіСЂСѓР·РєР° [] РґР»СЏ РѕР±СЂР°С‰РµРЅРёСЏ РїРѕ Р°Р±СЃРѕР»СЋС‚РЅРѕРјСѓ РёРЅРґРµРєСЃСѓ
 	T& operator[](const int index) {
 		Node* ptr = search(index);
 		return ptr->data;

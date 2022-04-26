@@ -1,1 +1,4 @@
-﻿  test_container.vcxproj -> C:\Users\Mihail\OneDrive\C++\test_container\x64\Debug\test_container.exe
+﻿  main.cpp
+C:\Users\Mihail\OneDrive\C++\test_container\main.cpp(22,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  LINK : не найден или не выполнена сборка C:\Users\Mihail\OneDrive\C++\test_container\x64\Debug\test_container.exe при последней инкрементной компоновке; выполняется полная компоновка
+  test_container.vcxproj -> C:\Users\Mihail\OneDrive\C++\test_container\x64\Debug\test_container.exe
