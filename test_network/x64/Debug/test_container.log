@@ -1,0 +1,3 @@
+﻿  main.cpp
+C:\Users\Mihail\OneDrive\C++\test_network\main.cpp(22,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  test_container.vcxproj -> C:\Users\Mihail\OneDrive\C++\test_network\x64\Debug\test_network.exe
