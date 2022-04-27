@@ -5,10 +5,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="container.h" />
-    <ClInclude Include="unit.h">
-      <Filter>classes</Filter>
-    </ClInclude>
-    <ClInclude Include="network.h">
+    <ClInclude Include="classes.h">
       <Filter>classes</Filter>
     </ClInclude>
   </ItemGroup>

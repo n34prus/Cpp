@@ -1,4 +1,6 @@
 ﻿  main.cpp
-C:\Users\Mihail\OneDrive\C++\test_network\network.h(21,16): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\Mihail\OneDrive\C++\test_network\main.cpp(16,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\Mihail\OneDrive\C++\test_network\classes.h(47,16): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Mihail\OneDrive\C++\test_network\classes.h(52,19): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Mihail\OneDrive\C++\test_network\classes.h(123,16): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Mihail\OneDrive\C++\test_network\main.cpp(15,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
   test_network.vcxproj -> C:\Users\Mihail\OneDrive\C++\test_network\x64\Debug\test_network.exe
