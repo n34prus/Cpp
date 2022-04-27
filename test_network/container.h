@@ -1,6 +1,6 @@
 ﻿#pragma once
 template <class T>
-class List {
+class Container {
 private:
 	//	элементы контейнера
 	class Node {
@@ -73,12 +73,12 @@ public:
 		bool operator!=(const Iterator& it) { return nodePtr->data != it.nodePtr->data; }
 	};
 
-	List() {
+	Container() {
 		size = 0;
 		head = nullptr;
 		tail = nullptr;
 	}
-	~List() {
+	~Container() {
 		clear();
 	}
 
