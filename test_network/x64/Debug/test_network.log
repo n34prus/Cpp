@@ -2,5 +2,5 @@
 C:\Users\Mihail\OneDrive\C++\test_network\classes.h(50,13): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
 C:\Users\Mihail\OneDrive\C++\test_network\classes.h(69,16): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
 C:\Users\Mihail\OneDrive\C++\test_network\classes.h(74,19): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\Mihail\OneDrive\C++\test_network\classes.h(221,16): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Mihail\OneDrive\C++\test_network\classes.h(271,16): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
   test_network.vcxproj -> C:\Users\Mihail\OneDrive\C++\test_network\x64\Debug\test_network.exe

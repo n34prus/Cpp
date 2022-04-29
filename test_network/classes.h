@@ -42,7 +42,7 @@ private:
 	list <Unit*> subs;								//список подписок
 	list <Unit*> subers;							//список подписчиков (а нужен ли он?)
 	list<Messages> messages;						//все принятые когда-либо сообщения
-	uint8_t chances[5] = {20,20,20,20,20};			//вероятности по умолчанию %
+	uint8_t chances[4] = {20,20,20,20};			//вероятности по умолчанию % (ничего не делать = 100-sum(chances[i]))
 
 public:
 	Unit(Network* network, Unit* suber = nullptr)
@@ -89,9 +89,11 @@ public:
 		//составляем список доступных для подписки соседей
 		list<Unit*>::iterator it = subers.begin();
 		list<Unit*> avalibleUnits;
+		//проходим по списку всех подписчиков
 		while (it != subers.end())
 		{
-			if (searchUnit(subs, *it) != subs.end()) avalibleUnits.push_back(*it);
+			//если есть подписчик, но его нет в подписках, добавляем его в список доступных
+			if (searchUnit(subs, *it) == subs.end()) avalibleUnits.push_back(*it);
 			it++;
 		}
 		//если получившийся список не пуст, то берем оттуда произвольный элемент и ососеживаемся с ним
@@ -108,6 +110,17 @@ public:
 	{
 		subs.remove(unit);
 	};
+	//	удаляет подписку на производльного соседа
+	void removeRandSub()
+	{
+		if (subs.size() > 0)
+		{
+			list<Unit*> ::iterator it = subs.begin();
+			for (int i = 0; i < rand() % subs.size(); i++) it++;
+			removeSub(*it);
+		}
+	}
+
 	void printInfo(Info info)
 	{
 		//updateSubers();
@@ -148,6 +161,41 @@ public:
 		}
 		if (!i) makeEvent();
 		else if (i == 1) addRandSub();
+		else if (i == 2) removeRandSub();
+		else if (i == 3) makeNewUnit();
+	}
+
+	void handler(Messages message)
+	{
+		//в полученной структуре смотрим есть ли .unit в наших подписках
+		//если да, то:
+			//в нашей messages ищем it на Messages с таким .unit
+			//если нет то добавляем новый Mesages к нашему списку
+			//добавляем в (*it)->data число message.data.front()
+			//выводим в консоль для начала все data от этого unit
+		for (Unit* sub : subs)	if (message.unit == sub)
+		{
+			//for (Messages mes : messages)
+			list <Messages>::iterator it = messages.begin();
+			while (it != messages.end() && it->unit != message.unit) it++;
+			if (it != messages.end()) it->data.push_back(message.data.front());
+			else
+			{
+				messages.push_back(message);
+				it = messages.end();
+				it--;
+			}
+			cout << message.unit << " -> " << this << " : ";
+			if (rand() % 2)
+				cout << "N = " << (it)->data.size() << endl;
+			else
+			{
+				int sum = 0;
+				for (int n : (it)->data) sum += n;
+				cout << "S = " << sum << endl;
+			}
+		}
+			
 	}
 
 	//	реализация после определения класса Network
@@ -167,19 +215,21 @@ public:
 class Network
 {
 private:
+	int iteration = 0;
 	list <Unit*> units;		//узлы сети
 	list <Messages> pool;	//события текущей итерации
 public:
 	Network() {};
 	~Network() {};
 
-	//добавление нового узла
+	//создание нового узла (без подписчика)
 	Unit* newUnit(){ return new Unit(this); }
+	//создание нового узла (с подписчиком)
 	Unit* newUnit(Unit* unit) { return new Unit(this, unit); }
 	//добавление существующего узла
 	Unit* addUnit(Unit* unit)
 	{
-		units.push_back(unit);
+		units.push_front(unit);
 		return unit;
 	}
 
@@ -188,6 +238,7 @@ public:
 	{
 		list <Unit*>::iterator it = Unit::searchUnit(units, unit);
 		if (it != units.end()) it = units.erase(it);
+		delete unit;
 		return it;
 	}
 
@@ -202,12 +253,8 @@ public:
 			if ((*it)->sizeSubs() == 0 && (*it)->sizeSubers() == 0) it = removeUnit(*it);
 			else if (it != units.end()) it++;
 		}
-
-		//for (list <Unit*>::iterator it = units.begin(); it != units.end(); it++)
-		//	if ((*it)->sizeSubs() == 0 && (*it)->sizeSubers() == 0) it=removeUnit(*it);
 		//передача событий в узлы (перебор узлов)
 		doEvents();
-
 		//обновление subs и subers у узлов
 		for (list <Unit*>::iterator it = units.begin(); it != units.end(); it++)
 			(* it)->updateSubs();
@@ -216,6 +263,8 @@ public:
 			//действия узлов (перебор)
 		for (list <Unit*>::iterator it = units.begin(); it != units.end(); it++)
 			(*it)->doAction();
+
+		iteration++;
 	}
 
 	int getSize() { return units.size(); }
@@ -229,6 +278,7 @@ public:
 			list<Unit*> candidatSubs = (*itc)->getSubs();
 			if (Unit::searchUnit(candidatSubs, unit) != candidatSubs.end()) subers.push_back(*itc);
 		}
+		subers.unique();
 		return subers;
 	}
 
@@ -238,6 +288,7 @@ public:
 		list<Unit*> subs = unit->getSubs();
 		for (list <Unit*>::iterator it = subs.begin(); it != subs.end(); it++)
 			if (Unit::searchUnit(units, unit)==units.end())it = subs.erase(it);
+		subs.unique();
 		return subs;
 	}
 
@@ -246,19 +297,20 @@ public:
 	//обработка событий в пуле
 	void doEvents()
 	{
-		list<int>::iterator itl;
-		for (list <Messages>::iterator itm = pool.begin(); itm != pool.end(); itm++)
-		{
-			Messages buffer = *itm;
-			itl = buffer.data.begin();
-			cout << &(*itm->unit) << " " << *itl << endl;
-		}
+		// перебрать все юниты
+		// перебрать все события
+		// попробовать вызвать обработчик у узла
+		// очистить пул сообщений
+		for (list <Unit*>::iterator itu = units.begin(); itu != units.end(); itu++)
+			for (list <Messages>::iterator itm = pool.begin(); itm != pool.end(); itm++)
+				(*itu)->handler(*itm);
+		pool.clear();
 	}
 
 	void printInfo(Info info)
 	{
 		textColour("lblue");
-		cout << endl << "Network " << this << " size: " << getSize() << endl;
+		cout << endl << "Network " << this << " | iteration " << iteration << " | size " << getSize() << endl;
 		textColour(" ");
 		for (list <Unit*>::iterator it = units.begin(); it != units.end(); it++)
 			(*it)->printInfo(info);
