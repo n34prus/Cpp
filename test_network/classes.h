@@ -8,7 +8,7 @@ using namespace std;
 struct Messages;
 class Network;
 class Unit;
-enum Info { BASE, FULL };
+enum class Info { MIN, BASE, FULL };
 
 void textColour(string s)
 {
@@ -42,7 +42,6 @@ private:
 	list <Unit*> subs;								//список подписок
 	list <Unit*> subers;							//список подписчиков (а нужен ли он?)
 	list<Messages> messages;						//все принятые когда-либо сообщения
-	uint8_t chances[4] = {20,20,20,20};			//вероятности по умолчанию % (ничего не делать = 100-sum(chances[i]))
 
 public:
 	Unit(Network* network, Unit* suber = nullptr)
@@ -62,6 +61,8 @@ public:
 		while (it != container.end() && *it != unit)	it++;
 		return it;
 	}
+
+
 
 	//	возвращает список подписок
 	list <Unit*> getSubs(){return subs;};
@@ -128,12 +129,12 @@ public:
 		else textColour("lgreen");
 		cout << "Unit " << this << " info:";
 		textColour("");
-		if (info == BASE)
+		if (info == Info::BASE)
 		{
 			cout << " " << sizeSubs() << " subs |";
 			cout << " " << sizeSubers() << " subers" << endl;
 		}
-		else if (info == FULL)
+		else if (info == Info::FULL)
 		{
 			cout << endl << "network: " << network << endl;
 			cout << "subscribes: " << endl;
@@ -147,22 +148,6 @@ public:
 				cout << i++ << " " << *it << endl;
 			cout << endl;
 		}
-	}
-
-	//	выбор действия и его осуществление
-	void doAction()
-	{
-		uint8_t k = rand() % 100;
-		int i;
-		for (i = 0; i < size(chances); i++)
-		{
-			if (k < chances[i]) break;
-			else k -= chances[i];
-		}
-		if (!i) makeEvent();
-		else if (i == 1) addRandSub();
-		else if (i == 2) removeRandSub();
-		else if (i == 3) makeNewUnit();
 	}
 
 	void handler(Messages message)
@@ -209,6 +194,8 @@ public:
 	void updateSubs();
 	//	обновляет список своих подписчиков
 	void updateSubers();
+	//	выбор действия и его осуществление
+	void doAction();
 
 };
 
@@ -218,6 +205,8 @@ private:
 	int iteration = 0;
 	list <Unit*> units;		//узлы сети
 	list <Messages> pool;	//события текущей итерации
+	int chances[4] = { 0,0,0,0 };					//вероятности по умолчанию % (ничего не делать = 100-sum(chances[i]))
+	Info info = Info::BASE;
 public:
 	Network() {};
 	~Network() {};
@@ -307,13 +296,58 @@ public:
 		pool.clear();
 	}
 
-	void printInfo(Info info)
+	void setChance(int action, int chance, bool slient = 0)
+	{
+		int lastChance = chances[action];
+		if (chance >= 0 && chance <= 100) chances[action] = chance;
+		int sum = 0;
+		for (int i = 0; i < size(chances); i++) sum += chances[i];
+		if (sum > 100)
+		{
+			chances[action] = chances[action] + 100 - sum;
+			if (!slient)
+				cout << "Sum of chances can not be higher than 100%. Value was decreased." << endl;
+		}
+	}
+
+	int getChance(int action)
+	{
+		return chances[action];
+	}
+
+	void printChances()
+	{
+		cout << "- create event: " << chances[0] << "%" << endl;
+		cout << "- add subscription: " << chances[1] << "%" << endl;
+		cout << "- delete subscription: " << chances[2] << "%" << endl;
+		cout << "- create new unit: " << chances[3] << "%" << endl;
+		int sum = 0;
+		for (int i = 0; i < size(chances); i++) sum += chances[i];
+		cout << "- do nothing: " << (100 - sum) << "%" << endl;
+	}
+
+	void initFewUnits(int count)
+	{
+		srand(time(NULL));
+		for (int i = 0; i < count; i++) newUnit();
+		for (auto unit1 : units)
+			for (auto unit2 : units)
+				if (rand() % 2) unit1->addSub(unit2);
+	}
+
+	void setInfoType(Info type)
+	{
+		info = type;
+	}
+
+	void printInfo()
 	{
 		textColour("lblue");
 		cout << endl << "Network " << this << " | iteration " << iteration << " | size " << getSize() << endl;
 		textColour(" ");
-		for (list <Unit*>::iterator it = units.begin(); it != units.end(); it++)
-			(*it)->printInfo(info);
+		if (info != Info::MIN)
+			for (list <Unit*>::iterator it = units.begin(); it != units.end(); it++)
+				(*it)->printInfo(info);
 	}
 };
 
@@ -341,6 +375,21 @@ void Unit::updateSubs()
 void Unit::updateSubers()
 {
 	subers = network->findSubers(this);
+}
+
+void Unit::doAction()
+{
+	uint8_t k = rand() % 100;
+	int i;
+	for (i = 0; i < 4; i++)
+	{
+		if (k < network->getChance(i)) break;
+		else k -= network->getChance(i);
+	}
+	if (!i) makeEvent();
+	else if (i == 1) addRandSub();
+	else if (i == 2) removeRandSub();
+	else if (i == 3) makeNewUnit();
 }
 
 #endif
