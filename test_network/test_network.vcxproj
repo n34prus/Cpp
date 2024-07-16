@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="container.h" />
     <ClInclude Include="classes.h" />
+    <ClInclude Include="simple_delegate.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,4 +1,4 @@
-﻿//  демонстрация работы методов контейнера
+﻿//  демонстрация работы сети
 //  Каргин М.С.
 //  INFO указывает насколько подробно в консоли описывается состояние сети
 //  доступны режимы MIN BASE FULL
@@ -6,12 +6,13 @@
 #include <iostream>
 #include <string>
 #include "classes.h"
+#include "simple_delegate.h"
 
 using namespace std;
 
 Network* network = new Network();
 string cmd = "";
-
+/*
 int main()
 {
     //параметры, доступные для ввода: стартовое кол-во узлов в сети, вероятности событий
@@ -95,7 +96,7 @@ int main()
 
     while (1)
     {
-        cout << "Press ENTER for next step. Write 'help' to view avalible commands." << endl;
+        cout << "Press ENTER for next step. Write 'help' to view available commands." << endl;
         while (1)
         {
             cout << "> ";
@@ -108,10 +109,10 @@ int main()
             if (cmd == "show") network->printInfo();
             if (cmd == "help")
             {
-                cout << "Avalible commands | 'command' : description" << endl;
+                cout << "Available commands | 'command' : description" << endl;
                 cout << "'help' : show hint" << endl;
                 cout << "'stop' : terminate simulating" << endl;
-                cout << "'min'  : minumum info in console (only network state)" << endl;
+                cout << "'min'  : minimum info in console (only network state)" << endl;
                 cout << "'base' : base info in console (list of units)" << endl;
                 cout << "'full' : maximum info in console" << endl;
                 cout << "'show' : print (update) information in console" << endl;
@@ -126,4 +127,34 @@ int main()
             break;
         }
     }
+}
+*/
+
+class Target
+{
+public:
+    void foo()
+    {
+        cout << "foo()" << endl;
+    }
+    void bar(int i)
+    {
+        cout << "bar(" << i << ")" << endl;
+    }
+    void pee(int i, int j)
+    {
+        cout << "pee(" << i << "," << j << ")" << endl;
+    }
+};
+
+int main()
+{
+    Target target;
+    Delegate delegate;
+    delegate.Connect(&target, &Target::foo);
+    delegate();
+    delegate.Connect(&target, &Target::bar);
+    delegate(1);
+    delegate.Connect(&target, &Target::pee);
+    delegate(2,3);
 }

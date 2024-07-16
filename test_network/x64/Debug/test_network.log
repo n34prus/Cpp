@@ -1,10 +1,7 @@
 ﻿  main.cpp
-C:\Users\Mihail\OneDrive\C++\test_network\classes.h(49,13): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-C:\Users\Mihail\OneDrive\C++\test_network\classes.h(70,16): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\Mihail\OneDrive\C++\test_network\classes.h(75,19): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\Mihail\OneDrive\C++\test_network\classes.h(259,16): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\Mihail\OneDrive\C++\test_network\classes.h(331,13): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-C:\Users\Mihail\OneDrive\C++\test_network\main.cpp(21,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-C:\Users\Mihail\OneDrive\C++\test_network\main.cpp(55,54): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\Mihail\OneDrive\C++\test_network\main.cpp(86,45): warning C4101: e: неиспользованная локальная переменная
-  test_network.vcxproj -> C:\Users\Mihail\OneDrive\C++\test_network\x64\Debug\test_network.exe
+C:\Users\n34pr\OneDrive\C++\test_network\classes.h(49,13): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\n34pr\OneDrive\C++\test_network\classes.h(70,16): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\n34pr\OneDrive\C++\test_network\classes.h(75,19): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\n34pr\OneDrive\C++\test_network\classes.h(259,16): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\n34pr\OneDrive\C++\test_network\classes.h(331,13): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  test_network.vcxproj -> C:\Users\n34pr\OneDrive\C++\test_network\x64\Debug\test_network.exe

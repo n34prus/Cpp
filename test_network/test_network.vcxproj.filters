@@ -8,6 +8,9 @@
     <ClInclude Include="classes.h">
       <Filter>classes</Filter>
     </ClInclude>
+    <ClInclude Include="simple_delegate.h">
+      <Filter>classes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="classes">

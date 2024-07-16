@@ -1,0 +1,6 @@
+﻿C:\Work\MVS22\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: промежуточный каталог (x64\Debug\) содержит файлы, которые используются совместно с другим проектом (ConsoleApplication1.vcxproj).  Это может привести к ошибкам очистки и перестроения.
+  ConsoleApplication1.cpp
+C:\Users\Mihail\source\repos\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(54,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\Mihail\source\repos\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(175,22): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Mihail\source\repos\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(185,64): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+  ConsoleApplication1.vcxproj -> C:\Users\Mihail\source\repos\ConsoleApplication1\x64\Debug\PathFinding.exe
