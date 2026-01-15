@@ -1,0 +1,32 @@
+﻿  PathFinding.cpp
+C:\Users\user\OneDrive\C++\PathFinding\PathFinding\PathFinding.cpp(71,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\user\OneDrive\C++\PathFinding\PathFinding\PathFinding.cpp(149,22): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\user\OneDrive\C++\PathFinding\PathFinding\PathFinding.cpp(159,64): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\NodeMatrix.h(29,31): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+  (компиляция исходного файла "PathFinding.cpp")
+      C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\NodeMatrix.h(29,31):
+      контекст создания экземпляра шаблона (сначала самый старый)
+          C:\Users\user\OneDrive\C++\PathFinding\PathFinding\PathFinding.cpp(85,18):
+          выполняется компиляция ссылки на экземпляр шаблон функции "NodeMatrix::NodeMatrix<main::<lambda_1>>(size_t,size_t,const bool *,F)"
+          with
+          [
+              F=main::<lambda_1>
+          ]
+          C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\NodeMatrix.h(15,3):
+          выполняется компиляция ссылки на экземпляр шаблон функции "void NodeMatrix::FillFromMatrix<F>(const bool *,F)"
+          with
+          [
+              F=main::<lambda_1>
+          ]
+  
+C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\NodeMatrix.h(29,28): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+  (компиляция исходного файла "PathFinding.cpp")
+  
+C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\NodeMatrix.h(63,22): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+  (компиляция исходного файла "PathFinding.cpp")
+  
+  Создание кода
+  Previous IPDB not found, fall back to full compilation.
+  All 412 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Создание кода завершено
+  PathFinding.vcxproj -> C:\Users\user\OneDrive\C++\PathFinding\x64\Release\PathFinding.exe
