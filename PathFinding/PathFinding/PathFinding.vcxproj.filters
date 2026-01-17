@@ -15,5 +15,8 @@
     <ClInclude Include="Source\NodeMatrix.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Dijkstra.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -25,8 +25,4 @@ C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\NodeMatrix.h(29,28): w
 C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\NodeMatrix.h(63,22): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
   (компиляция исходного файла "PathFinding.cpp")
   
-  Создание кода
-  Previous IPDB not found, fall back to full compilation.
-  All 412 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
-  Создание кода завершено
-  PathFinding.vcxproj -> C:\Users\user\OneDrive\C++\PathFinding\x64\Release\PathFinding.exe
+C:\Users\user\OneDrive\C++\PathFinding\PathFinding\PathFinding.cpp(240,1): error C2471: невозможно обновить базу данных программы "C:\Users\user\OneDrive\C++\PathFinding\PathFinding\x64\Release\vc143.pdb"

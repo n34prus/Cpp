@@ -137,6 +137,7 @@
     <ClCompile Include="PathFinding.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Dijkstra.h" />
     <ClInclude Include="Source\Node.h" />
     <ClInclude Include="Source\NodeMatrix.h" />
   </ItemGroup>
