@@ -1,55 +1,48 @@
 ﻿  PathFinding.cpp
-C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\Dijkstra.h(127,40): warning C4267: инициализация: преобразование из "size_t" в "SHORT"; возможна потеря данных
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(271,16): warning C4267: инициализация: преобразование из "size_t" в "_Ty1"; возможна потеря данных
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(271,16): warning C4267:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(271,16): warning C4267:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(271,16): warning C4267:             _Ty1=int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(271,16): warning C4267:         ]
   (компиляция исходного файла "PathFinding.cpp")
-  
-C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\Dijkstra.h(127,51): warning C4267: инициализация: преобразование из "size_t" в "SHORT"; возможна потеря данных
-  (компиляция исходного файла "PathFinding.cpp")
-  
-C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\Dijkstra.h(129,61): warning C4267: инициализация: преобразование из "size_t" в "SHORT"; возможна потеря данных
-  (компиляция исходного файла "PathFinding.cpp")
-  
-C:\Users\user\OneDrive\C++\PathFinding\PathFinding\PathFinding.cpp(58,27): warning C4267: аргумент: преобразование из "size_t" в "short"; возможна потеря данных
-C:\Users\user\OneDrive\C++\PathFinding\PathFinding\PathFinding.cpp(58,20): warning C4267: аргумент: преобразование из "size_t" в "short"; возможна потеря данных
-C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\Dijkstra.h(48,23): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-  (компиляция исходного файла "PathFinding.cpp")
-      C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\Dijkstra.h(48,23):
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(271,16):
       контекст создания экземпляра шаблона (сначала самый старый)
-          C:\Users\user\OneDrive\C++\PathFinding\PathFinding\PathFinding.cpp(97,10):
-          выполняется компиляция ссылки на экземпляр шаблон функции "void Dijkstra::Calculate<main::<lambda_1>>(F)"
-          with
-          [
-              F=main::<lambda_1>
-          ]
+          C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\Dijkstra.h(25,35):
+          выполняется компиляция ссылки на экземпляр шаблон функции "std::pair<int,int>::pair<size_t,size_t,0>(const std::pair<size_t,size_t> &) noexcept"
+              C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\Dijkstra.h(25,13):
+              см. первую ссылку на "std::pair<int,int>::pair" в "Dijkstra::Dijkstra"
   
-C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\Dijkstra.h(59,66): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(271,38): warning C4267: инициализация: преобразование из "size_t" в "_Ty2"; возможна потеря данных
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(271,38): warning C4267:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(271,38): warning C4267:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(271,38): warning C4267:             _Ty2=int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(271,38): warning C4267:         ]
   (компиляция исходного файла "PathFinding.cpp")
   
-C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\Dijkstra.h(70,24): warning C4244: инициализация: преобразование "__int64" в "uint8_t", возможна потеря данных
-  (компиляция исходного файла "PathFinding.cpp")
-  
-C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\NodeMatrix.h(119,33): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
-  (компиляция исходного файла "PathFinding.cpp")
-      C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\NodeMatrix.h(119,33):
+  Dijkstra.cpp
+C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\Dijkstra.cpp(68,20): warning C4244: инициализация: преобразование "unsigned __int64" в "uint8_t", возможна потеря данных
+C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\Dijkstra.cpp(120,32): warning C4267: инициализация: преобразование из "size_t" в "SHORT"; возможна потеря данных
+C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\Dijkstra.cpp(120,37): warning C4267: инициализация: преобразование из "size_t" в "SHORT"; возможна потеря данных
+C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\Dijkstra.cpp(122,53): warning C4267: инициализация: преобразование из "size_t" в "SHORT"; возможна потеря данных
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(271,16): warning C4267: инициализация: преобразование из "size_t" в "_Ty1"; возможна потеря данных
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(271,16): warning C4267:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(271,16): warning C4267:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(271,16): warning C4267:             _Ty1=int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(271,16): warning C4267:         ]
+  (компиляция исходного файла "Source/Dijkstra.cpp")
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(271,16):
       контекст создания экземпляра шаблона (сначала самый старый)
-          C:\Users\user\OneDrive\C++\PathFinding\PathFinding\PathFinding.cpp(83,18):
-          выполняется компиляция ссылки на экземпляр шаблон функции "NodeMatrix::NodeMatrix<BitMatrix,main::<lambda_1>>(size_t,size_t,SourceObj,F)"
-          with
-          [
-              SourceObj=BitMatrix,
-              F=main::<lambda_1>
-          ]
-          C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\NodeMatrix.h(104,3):
-          выполняется компиляция ссылки на экземпляр шаблон функции "void NodeMatrix::FillFromMatrix<SourceObj,F>(SourceObj,F)"
-          with
-          [
-              SourceObj=BitMatrix,
-              F=main::<lambda_1>
-          ]
+          C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\Dijkstra.h(25,35):
+          выполняется компиляция ссылки на экземпляр шаблон функции "std::pair<int,int>::pair<size_t,size_t,0>(const std::pair<size_t,size_t> &) noexcept"
+              C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\Dijkstra.h(25,13):
+              см. первую ссылку на "std::pair<int,int>::pair" в "Dijkstra::Dijkstra"
   
-C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\NodeMatrix.h(119,30): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
-  (компиляция исходного файла "PathFinding.cpp")
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(271,38): warning C4267: инициализация: преобразование из "size_t" в "_Ty2"; возможна потеря данных
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(271,38): warning C4267:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(271,38): warning C4267:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(271,38): warning C4267:             _Ty2=int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\utility(271,38): warning C4267:         ]
+  (компиляция исходного файла "Source/Dijkstra.cpp")
   
-C:\Users\user\OneDrive\C++\PathFinding\PathFinding\Source\NodeMatrix.h(156,21): warning C4267: инициализация: преобразование из "size_t" в "uint8_t"; возможна потеря данных
-  (компиляция исходного файла "PathFinding.cpp")
-  
+  Создание кода...
   PathFinding.vcxproj -> C:\Users\user\OneDrive\C++\PathFinding\x64\Debug\PathFinding.exe

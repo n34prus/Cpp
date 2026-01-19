@@ -1,26 +1,21 @@
 ﻿#include <chrono>
-#include <map>
-#include <vector>
 #include <set>
-//#include <iomanip>
-#include <bitset>
 #include <iostream>
 #include <ctime>
 #include <windows.h>
 #include <conio.h>
 
 #include "Node.h"
-#include "NodeMatrix.h"
+#include "Cluster.h"
 #include "Dijkstra.h"
 
-// changeble settings
+// changable settings
 //#define ASTAR 1
-//#define INCLUDE_DIAGONAL 1
-//#define EXPENSIVE_DIAGONAL 1
-//#define ENABLE_GRAPHIC 1
-
-// other defines
-//#define SCLR(value) SetConsoleTextAttribute(hwnd, value | FOREGROUND_INTENSITY)
+#define INCLUDE_DIAGONAL true
+#define EXPENSIVE_DIAGONAL true
+#define ENABLE_GRAPHIC true
+#define SIZEX 256
+#define SIZEY 256
 
 
 void InitConsole(const HANDLE& hwnd, short width, short height)
@@ -30,18 +25,11 @@ void InitConsole(const HANDLE& hwnd, short width, short height)
 	CONSOLE_FONT_INFOEX fontInfo;
 	fontInfo.cbSize = sizeof(fontInfo);
 	GetCurrentConsoleFontEx(hwnd, TRUE, &fontInfo);
-	//wcsncpy(wchar_t*("Arial Cyr"), fontInfo.FaceName, LF_FACESIZE);
 	fontInfo.dwFontSize.X = fontSize;
 	fontInfo.dwFontSize.Y = fontSize;
 	SetCurrentConsoleFontEx(hwnd, TRUE, &fontInfo);
 
-	/*
-	COORD bufferSize = { width, height };
-	SetConsoleScreenBufferSize(hwnd, bufferSize);
-	SMALL_RECT windowSize = {0,0, width, height };
-	SetConsoleWindowInfo(hwnd, TRUE, &windowSize);
-	*/
-
+	if (width < 64 && height < 64) return;
 	RECT r;
 	GetWindowRect(GetConsoleWindow(), &r);
 	MoveWindow(GetConsoleWindow(), r.left, r.top, (fontSize+1)*(width), (fontSize+1)*height, TRUE);
@@ -50,8 +38,8 @@ void InitConsole(const HANDLE& hwnd, short width, short height)
 int main()
 {
 	// warning: about O(N) total cost
-	size_t SIZEX = 600;
-	size_t SIZEY = 300;
+	// games usual uses hierarchical grids with clusters, so
+	// todo: clusterization
 
 	// init
 	HANDLE hwnd = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -68,9 +56,9 @@ restart:
 
 	std::cout << "\033[H" << "Call #" << ++calls << std::endl;;
 	std::cout << "Generate random BitMatrix..." << std::endl;
-	BitMatrix source{SIZEX, SIZEY};
-	source.Randomize();
-	std::cout << "Random BitMatrix generating done." << std::endl;
+	// boolean matrix with random noise inside
+	BitMatrix source{SIZEX, SIZEY, true};
+	std::cout << "Random BitMatrix generating done" << std::endl;
 	
 	// create matrix of Nodes
 	std::cout << "Prepare graph from source BitMatrix..." << std::endl;
@@ -80,35 +68,47 @@ restart:
 		{
 			std::cout << "\r" << progress << "%";
 		};
-	NodeMatrix Space(SIZEX, SIZEY, source, printProgress);
+	Cluster grid(source, printProgress);
 
 	auto elapsedTime = duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - startTime).count();
 	genTime += elapsedTime;
 	std::cout << "\rGraph matrix generating done in " << elapsedTime << " ms" << std::endl;
 
+	// single-instanced variant works on original matrix
+	/*
+	Node* sourceNode = grid.getRandomNode();
+	Node* targetNode = grid.getRandomNode();
+	std::cout << "Start finding path from " << sourceNode << " to " << targetNode << std::endl; 
+	Dijkstra dijkstra{ grid, sourceNode, targetNode };
+	*/
 
-	// select two random nodes from graph to find path between
-	Node* sourceNode = Space.GetRandomNode();
-	Node* targetNode = Space.GetRandomNode();
-	std::cout << "Start finding path from " << sourceNode << " to " << targetNode << std::endl;
-
-	// init and run dijkstra
-	Dijkstra dijkstra{ Space, sourceNode, targetNode };
+	// multiple-instanced variant works on matrix copy
+	Dijkstra dijkstra{ grid, grid.getRandomNodeIdx(), grid.getRandomNodeIdx() };
+	dijkstra.bIncludeDiagonal = INCLUDE_DIAGONAL;
+	dijkstra.bExpensiveDiagonal = EXPENSIVE_DIAGONAL;
 	dijkstra.Calculate(printProgress);
 
 	elapsedTime = duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - startTime).count() - elapsedTime;
 	calcTime += elapsedTime;
 	totalPathNodes += dijkstra.resultPath.size();
 	std::cout << "\r" << dijkstra.iterations << " iterations done in " << elapsedTime << " ms" << std::endl;
-	std::cout << "Path found and contains " << dijkstra.resultPath.size() << " nodes :)" << std::endl;
+	if (!dijkstra.resultPath.empty())
+	{
+		std::cout << "Path found and contains " << dijkstra.resultPath.size() << " nodes :)" << std::endl;
+	}
+	else
+	{
+		std::cout << "Path not found :(" << std::endl;
+	}
 
 	// dijkstra: console result visualization
-	dijkstra.Draw(hwnd, 9);
+	if (ENABLE_GRAPHIC) dijkstra.Draw(hwnd, 10);
 
 	std::cout << "Generating time " << genTime / calls << " ms per call | ";
 	std::cout << static_cast<float>(genTime) / (calls * SIZEX * SIZEY) << " ms per path node" << std::endl;
 	std::cout << "Calculating time " << calcTime / calls << " ms per call | ";
-	std:: cout << calcTime / totalPathNodes << " ms per path node" << std::endl;
+	if (totalPathNodes)
+		std:: cout << calcTime / totalPathNodes << " ms per path node" << std::endl;
 	std::cout << "Press any key to start again";
 	while (!_kbhit()) { Sleep(50); }
 	_getch();

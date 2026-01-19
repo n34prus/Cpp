@@ -135,11 +135,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="PathFinding.cpp" />
+    <ClCompile Include="Source\Cluster.cpp" />
+    <ClCompile Include="Source\Dijkstra.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Dijkstra.h" />
     <ClInclude Include="Source\Node.h" />
-    <ClInclude Include="Source\NodeMatrix.h" />
+    <ClInclude Include="Source\Cluster.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
