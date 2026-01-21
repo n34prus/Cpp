@@ -101,6 +101,17 @@ public:
 		loadFromBitmatrix(source, callback);
 	}
 
+	~Cluster()
+	{
+		for (auto& row : data)
+		{
+			for (auto node : row)
+			{
+				delete node;
+			}
+		}
+	}
+
 	// fill space by nodes from static boolean matrix
 	void loadFromBitmatrix(const BitMatrix& source, const std::function<void(uint8_t)>& callback = nullptr);
 
