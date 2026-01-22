@@ -8,10 +8,34 @@
     <ClCompile Include="Source\Dijkstra.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="ThirdParty\imgui-master\imgui.cpp">
+      <Filter>ThirdParty</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\imgui-master\imgui_demo.cpp">
+      <Filter>ThirdParty</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\imgui-master\imgui_draw.cpp">
+      <Filter>ThirdParty</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\imgui-master\imgui_tables.cpp">
+      <Filter>ThirdParty</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\imgui-master\imgui_widgets.cpp">
+      <Filter>ThirdParty</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\imgui-master\backends\imgui_impl_glfw.cpp">
+      <Filter>ThirdParty</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\imgui-master\backends\imgui_impl_opengl3.cpp">
+      <Filter>ThirdParty</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
       <UniqueIdentifier>{a51d809d-7e72-41a5-b69a-cbe65c91af90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty">
+      <UniqueIdentifier>{a707f44a-3380-47c1-9379-07d10aad609e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -24,5 +48,10 @@
     <ClInclude Include="Source\Dijkstra.h">
       <Filter>Source</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="ThirdParty\imgui-master\examples\libs\glfw\lib-vc2010-64\glfw3.lib">
+      <Filter>ThirdParty</Filter>
+    </Library>
   </ItemGroup>
 </Project>

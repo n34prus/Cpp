@@ -9,8 +9,11 @@
 #include "Cluster.h"
 #include "Dijkstra.h"
 
+#pragma comment(linker, "/ENTRY:mainCRTStartup")
+
 // changable settings
 //#define ASTAR 1
+#define ENABLE_CONSOLE true
 #define INCLUDE_DIAGONAL true
 #define EXPENSIVE_DIAGONAL true
 #define ENABLE_GRAPHIC true
@@ -18,8 +21,24 @@
 #define SIZEY 256
 
 
-void InitConsole(const HANDLE& hwnd, short width, short height)
+HANDLE InitConsole(short width, short height)
 {
+	AllocConsole(); // call FreeConsole() to disable
+
+	HANDLE hwnd = CreateConsoleScreenBuffer(
+		GENERIC_READ | GENERIC_WRITE,
+		FILE_SHARE_READ | FILE_SHARE_WRITE,
+		nullptr,
+		CONSOLE_TEXTMODE_BUFFER,
+		nullptr
+	);
+	SetConsoleActiveScreenBuffer(hwnd);
+
+	FILE* f;
+	freopen_s(&f, "CONOUT$", "w", stdout);
+	freopen_s(&f, "CONOUT$", "w", stderr);
+	freopen_s(&f, "CONIN$", "r", stdin);
+
 	constexpr int fontSize = 10;
 
 	CONSOLE_FONT_INFOEX fontInfo;
@@ -28,11 +47,18 @@ void InitConsole(const HANDLE& hwnd, short width, short height)
 	fontInfo.dwFontSize.X = fontSize;
 	fontInfo.dwFontSize.Y = fontSize;
 	SetCurrentConsoleFontEx(hwnd, TRUE, &fontInfo);
+	COORD bufferSize = { static_cast<short>(width * 2), static_cast<short>(height * 2) };
+	SetConsoleScreenBufferSize(hwnd, bufferSize);
 
-	if (width < 64 && height < 64) return;
-	RECT r;
-	GetWindowRect(GetConsoleWindow(), &r);
-	MoveWindow(GetConsoleWindow(), r.left, r.top, (fontSize+1)*(width), (fontSize+1)*height, TRUE);
+	if (width > 64 && height > 64)
+	{
+		RECT r;
+		GetWindowRect(GetConsoleWindow(), &r);
+		MoveWindow(GetConsoleWindow(), r.left, r.top, (fontSize + 1) * (width), (fontSize + 1) * height, TRUE);
+	}
+
+	return hwnd;
+
 }
 
 int main()
@@ -42,8 +68,7 @@ int main()
 	// todo: clusterization
 
 	// init
-	HANDLE hwnd = GetStdHandle(STD_OUTPUT_HANDLE);
-	InitConsole(hwnd, SIZEY, SIZEX);
+	HANDLE hwnd = InitConsole(SIZEY, SIZEX);
 
 	// counters for average cost
 	int calls = 0;
