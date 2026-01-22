@@ -36,4 +36,5 @@ public:
 	{
 		for (auto& n : neighbours) n = nullptr;
 	};
+	virtual ~Node() = default;
 };

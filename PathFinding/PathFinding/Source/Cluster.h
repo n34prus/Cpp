@@ -100,6 +100,8 @@ public:
 	{
 		loadFromBitmatrix(source, callback);
 	}
+	// should copy all nodes and reinit
+	Cluster(const Cluster& other) : Cluster(other.generateBitMatrix()) {}
 
 	~Cluster()
 	{
@@ -114,6 +116,9 @@ public:
 
 	// fill space by nodes from static boolean matrix
 	void loadFromBitmatrix(const BitMatrix& source, const std::function<void(uint8_t)>& callback = nullptr);
+
+	// generate bitmatrix from cluster
+	BitMatrix generateBitMatrix() const;
 
 	// get ref to random active node
 	Node* getRandomNode() const;

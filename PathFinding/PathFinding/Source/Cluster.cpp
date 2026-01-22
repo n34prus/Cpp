@@ -83,6 +83,23 @@ void Cluster::loadFromBitmatrix(const BitMatrix& source, const std::function<voi
 		}
 	}
 }
+
+BitMatrix Cluster::generateBitMatrix() const
+{
+	BitMatrix result{ sizex, sizey, false };
+	for (size_t i = 0; i < sizex; i++)
+	{
+		for (size_t j = 0; j < sizey; j++)
+		{
+			if (data[i][j])
+			{
+				result.setBit(i, j, data[i][j]->bActive);
+			}
+		}
+	}
+	return result;
+}
+
 Node* Cluster::getRandomNode() const
 {
 	if (activeNodes.empty()) return nullptr;
