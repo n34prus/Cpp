@@ -46,8 +46,9 @@ public:
 	bool bExpensiveDiagonal = true;
 	// temp and result
 	int iterations = 0;
-	std::map< Node*, std::vector<Node*> > reachableNodes;
-	std::set<Node*> resultPath;
+	// reachable node: parent node, distance from sourceNode
+	std::unordered_map<Node*, std::pair<Node*,size_t>> reachableNodes;
+	std::vector<Node*> resultPath;
 
 private:
 	std::unique_ptr<Cluster> matrixCopy;	// valid if works with own copy

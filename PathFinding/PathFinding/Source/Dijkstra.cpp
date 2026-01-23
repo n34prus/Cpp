@@ -16,7 +16,7 @@ void Dijkstra::Calculate(const std::function<void(uint8_t)>& callback)
 	{
 		if (!nbNode || (!bIncludeDiagonal && sourceNode->isDiagonalNeighbourOf(nbNode))) continue;
 		lastStepContainer.insert(nbNode);
-		reachableNodes.insert_or_assign(nbNode, std::vector<Node*>{nbNode});
+		reachableNodes.insert_or_assign(nbNode, std::make_pair(sourceNode, 1));
 	}
 
 	// every next iteration: wide search to neighbours of last iteration container
@@ -33,33 +33,19 @@ void Dijkstra::Calculate(const std::function<void(uint8_t)>& callback)
 				if (!nbNode || (!bIncludeDiagonal && baseNode->isDiagonalNeighbourOf(nbNode))) continue;
 				if (nbNode != sourceNode && !reachableNodes.contains(nbNode))
 				{
-					// check if nbNode is reachable by shorter path from any other neighbour ()
-					size_t basePathLen = reachableNodes.find(baseNode)->second.size();
-					Node* closestNode = baseNode;
-					for (auto nbnbNode : nbNode->neighbours)
-					{
-						if (!nbnbNode) continue;
-						// mark diagonal connections less valuable. 
-						// todo: settable weight conditions
-						size_t shortPathLen = basePathLen;
-						if (bIncludeDiagonal && bExpensiveDiagonal && nbNode->isDiagonalNeighbourOf(nbnbNode)) shortPathLen--;
-						if (nbnbNode != sourceNode && reachableNodes.contains(nbnbNode) && reachableNodes.find(nbnbNode)->second.size() <= shortPathLen)
-						{
-							closestNode = nbnbNode;
-							basePathLen = reachableNodes.find(nbnbNode)->second.size();
-						}
-					}
-					std::vector<Node*> path = reachableNodes.find(closestNode)->second;
-					path.push_back(nbNode);
-					reachableNodes.insert_or_assign(nbNode, path);
+					size_t pathLen = 0;
+					if (auto it = reachableNodes.find(baseNode); it != reachableNodes.end()) pathLen = it->second.second;
+					if (baseNode->isDiagonalNeighbourOf(nbNode) && bExpensiveDiagonal) pathLen += 2;
+					else pathLen += 1;
+					reachableNodes.insert_or_assign(nbNode, std::make_pair(baseNode, pathLen));
 					nextStepContainer.insert(nbNode);
-						
 				}
 			}
 		}
 		// update iteration container
 		lastStepContainer = nextStepContainer;
 
+		//if (reachableNodes.contains(targetNode) || nextStepContainer.empty()) break;
 		if (reachableNodes.contains(targetNode) || nextStepContainer.empty()) break;
 
 		// progress callback
@@ -77,15 +63,20 @@ void Dijkstra::Calculate(const std::function<void(uint8_t)>& callback)
 
 	if (reachableNodes.contains(targetNode))
 	{
-		for (auto& i : reachableNodes.find(targetNode)->second)
-		{
-			resultPath.insert(i);
+		Node* n = targetNode;
+		while (n) {
+			resultPath.push_back(n);
+			if (n == sourceNode) break;
+			if (auto it = reachableNodes.find(n); it != reachableNodes.end()) n = it->second.first;
+			else break;
 		}
+		std::reverse(resultPath.begin(), resultPath.end());
 	}
 }
 
 void Dijkstra::Draw(HANDLE hwnd, short offset) const
 {
+	std::set<Node*> path{ this->resultPath.begin(), this->resultPath.end() };
 	std::vector<CHAR_INFO> buffer;
 	auto gen_ci = [](char c, WORD atr = 0x7) -> CHAR_INFO
 	{
@@ -106,7 +97,7 @@ void Dijkstra::Draw(HANDLE hwnd, short offset) const
 			if (matrix[i][j]->bActive)
 				if (reachableNodes.contains(matrix[i][j]))	{ color = 0x7; symbol = '+'; }
 				else										{ color = 0x8; symbol = '.'; }
-			if (resultPath.contains(matrix[i][j]))			{ color = 0xD; symbol = 'X'; }
+			if (path.contains(matrix[i][j]))			{ color = 0xD; symbol = 'X'; }
 			if (matrix[i][j] == sourceNode)					{ color = 0x2; symbol = 'S'; }
 			if (matrix[i][j] == targetNode)					{ color = 0x2; symbol = 'T'; }
 
