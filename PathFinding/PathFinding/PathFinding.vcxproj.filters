@@ -48,6 +48,9 @@
     <ClInclude Include="Source\Dijkstra.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="Source\UI.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Library Include="ThirdParty\imgui-master\examples\libs\glfw\lib-vc2010-64\glfw3.lib">

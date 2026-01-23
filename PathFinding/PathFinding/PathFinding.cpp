@@ -1,13 +1,12 @@
 ﻿#include <chrono>
 #include <set>
 #include <iostream>
-#include <ctime>
 #include <windows.h>
 #include <conio.h>
 
-#include "Node.h"
 #include "Cluster.h"
 #include "Dijkstra.h"
+#include "UI.h"
 
 #pragma comment(linker, "/ENTRY:mainCRTStartup")
 
@@ -17,49 +16,8 @@
 #define INCLUDE_DIAGONAL true
 #define EXPENSIVE_DIAGONAL true
 #define ENABLE_GRAPHIC true
-#define SIZEX 256
+#define SIZEX 2560
 #define SIZEY 256
-
-
-HANDLE InitConsole(short width, short height)
-{
-	AllocConsole(); // call FreeConsole() to disable
-
-	HANDLE hwnd = CreateConsoleScreenBuffer(
-		GENERIC_READ | GENERIC_WRITE,
-		FILE_SHARE_READ | FILE_SHARE_WRITE,
-		nullptr,
-		CONSOLE_TEXTMODE_BUFFER,
-		nullptr
-	);
-	SetConsoleActiveScreenBuffer(hwnd);
-
-	FILE* f;
-	freopen_s(&f, "CONOUT$", "w", stdout);
-	freopen_s(&f, "CONOUT$", "w", stderr);
-	freopen_s(&f, "CONIN$", "r", stdin);
-
-	constexpr int fontSize = 10;
-
-	CONSOLE_FONT_INFOEX fontInfo;
-	fontInfo.cbSize = sizeof(fontInfo);
-	GetCurrentConsoleFontEx(hwnd, TRUE, &fontInfo);
-	fontInfo.dwFontSize.X = fontSize;
-	fontInfo.dwFontSize.Y = fontSize;
-	SetCurrentConsoleFontEx(hwnd, TRUE, &fontInfo);
-	COORD bufferSize = { static_cast<short>(width * 2), static_cast<short>(height * 2) };
-	SetConsoleScreenBufferSize(hwnd, bufferSize);
-
-	if (width > 64 && height > 64)
-	{
-		RECT r;
-		GetWindowRect(GetConsoleWindow(), &r);
-		MoveWindow(GetConsoleWindow(), r.left, r.top, (fontSize + 1) * (width), (fontSize + 1) * height, TRUE);
-	}
-
-	return hwnd;
-
-}
 
 int main()
 {
@@ -68,7 +26,9 @@ int main()
 	// todo: clusterization
 
 	// init
-	HANDLE hwnd = InitConsole(SIZEY, SIZEX);
+
+	UI ui{ UI::Mode::Console };
+	HANDLE hwnd = ui.InitConsole(SIZEY, SIZEX);
 
 	// counters for average cost
 	int calls = 0;
@@ -79,14 +39,14 @@ int main()
 	// restart point FOR DEBUG ONLY
 restart:
 
-	std::cout << "\033[H" << "Call #" << ++calls << std::endl;;
-	std::cout << "Generate random BitMatrix..." << std::endl;
 	// boolean matrix with random noise inside
+	ui.print(	"Call #", ++calls, "\n", "Generate random BitMatrix...\n");
 	BitMatrix source{SIZEX, SIZEY, true};
-	std::cout << "Random BitMatrix generating done" << std::endl;
+	//
+	ui.print("Random BitMatrix generating done\n");
 	
 	// create matrix of Nodes
-	std::cout << "Prepare graph from source BitMatrix..." << std::endl;
+	ui.print("Prepare graph from source BitMatrix...\n");
 	auto startTime = std::chrono::system_clock::now();
 
 	auto printProgress = [](int progress)
@@ -97,7 +57,7 @@ restart:
 
 	auto elapsedTime = duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - startTime).count();
 	genTime += elapsedTime;
-	std::cout << "\rGraph matrix generating done in " << elapsedTime << " ms" << std::endl;
+	ui.print("\rGraph matrix generating done in ", elapsedTime, " ms\n");
 
 	// single-instanced variant works on original matrix
 	/*
@@ -116,28 +76,23 @@ restart:
 	elapsedTime = duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - startTime).count() - elapsedTime;
 	calcTime += elapsedTime;
 	totalPathNodes += dijkstra.resultPath.size();
-	std::cout << "\r" << dijkstra.iterations << " iterations done in " << elapsedTime << " ms" << std::endl;
-	if (!dijkstra.resultPath.empty())
-	{
-		std::cout << "Path found and contains " << dijkstra.resultPath.size() << " nodes :)" << std::endl;
-	}
-	else
-	{
-		std::cout << "Path not found :(" << std::endl;
-	}
+
+	// prints statistics
+	ui.print("\r", dijkstra.iterations, " iterations done in ", elapsedTime, " ms\n");
+	if (!dijkstra.resultPath.empty()) ui.print("Path found and contains ", dijkstra.resultPath.size(), " nodes :)\n");
+	else ui.print("Path not found :(\n");
+	ui.print("Generating time ", genTime / calls, " ms per call | ",
+		static_cast<float>(genTime * 1000) / (calls * SIZEX * SIZEY), " us per node\n",
+		"Calculating time ", calcTime / calls, " ms per call | ");
+	if (totalPathNodes) ui.print(static_cast<float>(calcTime) / (totalPathNodes), " ms per path node\n");
 
 	// dijkstra: console result visualization
 	if (ENABLE_GRAPHIC) dijkstra.Draw(hwnd, 10);
 
-	std::cout << "Generating time " << genTime / calls << " ms per call | ";
-	std::cout << static_cast<float>(genTime) / (calls * SIZEX * SIZEY) << " ms per path node" << std::endl;
-	std::cout << "Calculating time " << calcTime / calls << " ms per call | ";
-	if (totalPathNodes)
-		std:: cout << calcTime / totalPathNodes << " ms per path node" << std::endl;
-	std::cout << "Press any key to start again";
+	ui.print("Press any key to start again");
 	while (!_kbhit()) { Sleep(50); }
 	_getch();
-	system("cls");
+	ui.clear();
 	// DEADLY bad way, only for debug, sorry for that
 
 	goto restart;

@@ -1,6 +1,7 @@
 ﻿#include <random>
 #include <vector>
 #include <ranges>
+#include <assert.h>
 
 #include "Cluster.h"
 #include "Node.h"
@@ -26,7 +27,9 @@ bool BitMatrix::getBit(size_t i, size_t j) const
 
 void BitMatrix::setBit(size_t i, size_t j, bool val)
 {
-	size_t idx = i * sizex + j;
+	assert(i < sizex);
+	assert(j < sizey);
+	size_t idx = i * sizey + j;
 	if (val)
 		matrix[idx / 8] |= (1 << (idx % 8));
 	else

@@ -153,6 +153,7 @@
     <ClInclude Include="Source\Dijkstra.h" />
     <ClInclude Include="Source\Node.h" />
     <ClInclude Include="Source\Cluster.h" />
+    <ClInclude Include="Source\UI.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="ThirdParty\imgui-master\examples\libs\glfw\lib-vc2010-64\glfw3.lib" />
