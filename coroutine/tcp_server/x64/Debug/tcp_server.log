@@ -1,0 +1,15 @@
+﻿C:\Users\user\OneDrive\C++\coroutine\tcp_server\tcp_server.cpp(142,54): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+                      send(client, timebuf, std::strlen(timebuf), 0);
+                                                       ^
+  
+C:\Users\user\OneDrive\C++\coroutine\tcp_server\tcp_server.cpp(203,14): warning C4244: return: преобразование "const _Ty2" в "uint32_t", возможна потеря данных
+C:\Users\user\OneDrive\C++\coroutine\tcp_server\tcp_server.cpp(203,14): warning C4244:         with
+C:\Users\user\OneDrive\C++\coroutine\tcp_server\tcp_server.cpp(203,14): warning C4244:         [
+C:\Users\user\OneDrive\C++\coroutine\tcp_server\tcp_server.cpp(203,14): warning C4244:             _Ty2=uint64_t
+C:\Users\user\OneDrive\C++\coroutine\tcp_server\tcp_server.cpp(203,14): warning C4244:         ]
+  				return it->second;
+  				         ^
+  
+  tcp_server.cpp
+  LINK : не найден или не выполнена сборка C:\Users\user\OneDrive\C++\coroutine\x64\Debug\tcp_server.exe при последней инкрементной компоновке; выполняется полная компоновка
+  tcp_server.vcxproj -> C:\Users\user\OneDrive\C++\coroutine\x64\Debug\tcp_server.exe

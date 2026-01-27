@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "server-client",
+    "Projects": [
+      {
+        "Path": "tcp_server\\tcp_server.vcxproj",
+        "Action": "Start",
+        "DebugTarget": "Локальный отладчик Windows"
+      },
+      {
+        "Path": "tcp_client\\tcp_client.vcxproj",
+        "Action": "Start",
+        "DebugTarget": "Локальный отладчик Windows"
+      }
+    ]
+  }
+]

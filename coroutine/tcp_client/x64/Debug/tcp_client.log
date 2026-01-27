@@ -1,0 +1,3 @@
+﻿  tcp_client.cpp
+  LINK : не найден или не выполнена сборка C:\Users\user\OneDrive\C++\coroutine\x64\Debug\tcp_client.exe при последней инкрементной компоновке; выполняется полная компоновка
+  tcp_client.vcxproj -> C:\Users\user\OneDrive\C++\coroutine\x64\Debug\tcp_client.exe
